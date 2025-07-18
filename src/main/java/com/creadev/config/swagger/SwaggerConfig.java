@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
-    info = @Info(title = "Azericard Developer API", version = "1.0"),
+    info = @Info(title = "Creadev API", version = "1.0"),
     security = @SecurityRequirement(name = "bearerAuth")
 )
 @SecurityScheme(
