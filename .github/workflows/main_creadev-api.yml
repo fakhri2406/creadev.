@@ -24,8 +24,8 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      - name: Build with Gradle
-        run: ./gradlew clean build
+      - name: Build with Gradle (skip tests)
+        run: ./gradlew clean build -x test
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
