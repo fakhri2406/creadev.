@@ -24,7 +24,7 @@ import static com.creadev.util.ErrorMessages.RESPONSE_FAILED;
 @Service
 @RequiredArgsConstructor
 public class OpenAiServiceImpl implements OpenAiService {
-    private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.', a company specializing in custom software development. Use the provided categories and products to answer user questions about the company, categories, and products. Provide clear, concise, and helpful responses.";
+    private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.', a company specializing in custom software development. Your name is 'creadev.ai'. Use the provided categories and products to answer user questions about the company, categories, and products. Provide clear, concise, and helpful responses.";
 
     private final OpenAiProperties properties;
     private final RestTemplate restTemplate;
