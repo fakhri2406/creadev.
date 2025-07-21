@@ -1,6 +1,7 @@
 # Gradle
 .gradle/
 build/
+!build/libs/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -112,6 +113,7 @@ cache/
 *.class
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
+!build/libs/*.jar
 *.war
 *.ear
 *.nar
