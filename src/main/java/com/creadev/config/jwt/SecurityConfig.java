@@ -24,6 +24,8 @@ public class SecurityConfig {
     private static final String ROLE_EDITOR = "EDITOR";
 
     private static final String USERS_URL = "/api/v1/users/**";
+    private static final String CATEGORIES_URL = "/api/v1/categories/**";
+    private static final String PRODUCTS_URL = "/api/v1/products/**";
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
@@ -45,14 +47,26 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, USERS_URL).hasRole(ROLE_ADMIN)
                 .requestMatchers(HttpMethod.PUT, USERS_URL).hasRole(ROLE_ADMIN)
                 .requestMatchers(HttpMethod.DELETE, USERS_URL).hasRole(ROLE_ADMIN)
+                .requestMatchers(HttpMethod.POST, CATEGORIES_URL).hasRole(ROLE_ADMIN)
+                .requestMatchers(HttpMethod.PUT, CATEGORIES_URL).hasRole(ROLE_ADMIN)
+                .requestMatchers(HttpMethod.DELETE, CATEGORIES_URL).hasRole(ROLE_ADMIN)
+                .requestMatchers(HttpMethod.POST, PRODUCTS_URL).hasAnyRole(ROLE_ADMIN, ROLE_EDITOR)
+                .requestMatchers(HttpMethod.PUT, PRODUCTS_URL).hasAnyRole(ROLE_ADMIN, ROLE_EDITOR)
+                .requestMatchers(HttpMethod.DELETE, PRODUCTS_URL).hasRole(ROLE_ADMIN)
                 .requestMatchers(
                     "/api/v1/auth/login",
+                    "/api/v1/ai/ask",
                     "/v3/api-docs",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/swagger-ui/index.html",
                     "/webjars/**"
+                ).permitAll()
+                .requestMatchers(
+                    HttpMethod.GET,
+                    CATEGORIES_URL,
+                    PRODUCTS_URL
                 ).permitAll()
                 .anyRequest().authenticated()
             )

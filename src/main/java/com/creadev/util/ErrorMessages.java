@@ -40,4 +40,9 @@ public final class ErrorMessages {
     public static final String FILE_EMPTY_OR_NULL = "File is empty or null";
     public static final String FILE_SIZE_EXCEEDS_LIMIT = "File size exceeds the maximum allowed size of %d bytes";
     public static final String FILE_UNSUPPORTED_TYPE = "Unsupported file type. Allowed types: JPEG, PNG, PDF";
+
+    /**
+     * OpenAI error messages
+     */
+    public static final String RESPONSE_FAILED = "Failed to get response from OpenAI API";
 } 

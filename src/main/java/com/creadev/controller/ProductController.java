@@ -26,7 +26,7 @@ import java.util.List;
     name = "Product",
     description = "Endpoints for managing products"
 )
-@RequestMapping("/api/v1/docs")
+@RequestMapping("/api/v1/products")
 @Validated
 @RequiredArgsConstructor
 public class ProductController {
