@@ -44,5 +44,11 @@ public final class ErrorMessages {
     /**
      * OpenAI error messages
      */
-    public static final String RESPONSE_FAILED = "Failed to get response from OpenAI API";
+    public static final String FAILED_TO_SEND_CHAT_REQUEST = "Failed to send chat request";
+    public static final String FAILED_TO_PREPARE_AI_REQUEST = "Failed to prepare AI request";
+
+    /**
+     * Email error messages
+     */
+    public static final String FAILED_TO_SEND_EMAIL = "Failed to send email";
 } 

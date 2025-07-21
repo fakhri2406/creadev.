@@ -1,0 +1,46 @@
+package com.creadev.external.openai;
+
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.creadev.service.CategoryService;
+import com.creadev.service.ProductService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.RequiredArgsConstructor;
+import static com.creadev.util.ErrorMessages.*;
+
+@Service
+@RequiredArgsConstructor
+public class QuestionServiceImpl implements QuestionService {
+    private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.' ('creadev.ai'), a company specializing in custom software development. Use the provided categories and products to answer user questions about the company. The user may ask a question in any language (most used one is Azerbaijani). You need to provide clear, concise, and helpful responses in the language of user's prompt.";
+
+    private final ChatClient chatClient;
+    private final CategoryService categoryService;
+    private final ProductService productService;
+    private final ObjectMapper objectMapper;
+
+    @Override
+    public String getAnswer(String question) {
+        try {
+            String categoriesJson = objectMapper.writeValueAsString(
+            categoryService.getAllCategories(Pageable.unpaged()).getContent()
+        );
+            String productsJson = objectMapper.writeValueAsString(
+                productService.getAllProducts(Pageable.unpaged()).getContent()
+            );
+            List<ChatMessage> messages = List.of(
+                new ChatMessage("system", SYSTEM_PROMPT),
+                new ChatMessage("user", "Categories: " + categoriesJson),
+                new ChatMessage("user", "Products: " + productsJson),
+                new ChatMessage("user", question)
+            );
+            return chatClient.chat(messages);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(FAILED_TO_PREPARE_AI_REQUEST, e);
+        }
+    }
+} 

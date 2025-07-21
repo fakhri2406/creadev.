@@ -1,6 +1,6 @@
 package com.creadev.external.openai;
 
-public interface OpenAiService {
+public interface QuestionService {
     /**
      * Send a user question to the OpenAI API and retrieve an answer.
      *
