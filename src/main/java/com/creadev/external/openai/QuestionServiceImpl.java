@@ -32,12 +32,14 @@ public class QuestionServiceImpl implements QuestionService {
             String productsJson = objectMapper.writeValueAsString(
                 productService.getAllProducts(Pageable.unpaged()).getContent()
             );
+
             List<ChatMessage> messages = List.of(
                 new ChatMessage("system", SYSTEM_PROMPT),
-                new ChatMessage("user", "Categories: " + categoriesJson),
-                new ChatMessage("user", "Products: " + productsJson),
+                new ChatMessage("system", "Categories: " + categoriesJson),
+                new ChatMessage("system", "Products: " + productsJson),
                 new ChatMessage("user", question)
             );
+
             return chatClient.chat(messages);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(FAILED_TO_PREPARE_AI_REQUEST, e);
