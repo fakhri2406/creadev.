@@ -1,8 +1,13 @@
 package com.creadev.external.openai;
 
-import java.io.IOException;
-import java.util.List;
-
+import com.creadev.config.openai.OpenAiProperties;
+import com.creadev.dto.response.category.CategoryResponse;
+import com.creadev.dto.response.product.ProductResponse;
+import com.creadev.service.CategoryService;
+import com.creadev.service.ProductService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,16 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.creadev.config.openai.OpenAiProperties;
-import com.creadev.dto.response.category.CategoryResponse;
-import com.creadev.dto.response.product.ProductResponse;
-import com.creadev.service.CategoryService;
-import com.creadev.service.ProductService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import static com.creadev.util.ErrorMessages.*;
+import java.io.IOException;
+import java.util.List;
 
-import lombok.RequiredArgsConstructor;
+import static com.creadev.util.ErrorMessages.RESPONSE_FAILED;
 
 @Service
 @RequiredArgsConstructor
