@@ -28,7 +28,9 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     }
 
     @Override
-    public void deleteFile(String publicId) {
+    public void deleteFile(String url) {
+        String publicId = extractPublicId(url);
+
         try {
             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
         } catch (IOException e) {
@@ -52,5 +54,16 @@ public class CloudinaryServiceImpl implements CloudinaryService {
                 contentType.equalsIgnoreCase("image/png"))) {
             throw new IllegalArgumentException(FILE_UNSUPPORTED_TYPE);
         }
+    }
+
+    private String extractPublicId(String url) {
+        int lastSlash = url.lastIndexOf('/');
+        int lastDot = url.lastIndexOf('.');
+
+        if (lastSlash != -1 && lastDot != -1 && lastDot > lastSlash) {
+            return url.substring(lastSlash + 1, lastDot);
+        }
+
+        return url;
     }
 } 

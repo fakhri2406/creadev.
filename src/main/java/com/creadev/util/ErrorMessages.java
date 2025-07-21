@@ -21,6 +21,18 @@ public final class ErrorMessages {
     public static final String USER_NOT_FOUND = "User not found";
 
     /**
+     * Category error messages
+     */
+    public static final String CATEGORY_NOT_FOUND = "Category not found";
+    public static final String CANNOT_DELETE_CATEGORY_WITH_DOCUMENTATIONS = "Cannot delete category with products";
+
+    /**
+     * Product error messages
+     */
+    public static final String FAILED_RETRIEVE_PRODUCT = "Failed to retrieve saved product";
+    public static final String PRODUCT_NOT_FOUND = "Product not found";
+
+    /**
      * Cloudinary error messages
      */
     public static final String UPLOAD_FAILED = "Failed to upload file to Cloudinary";
