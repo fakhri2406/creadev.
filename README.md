@@ -10,7 +10,9 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 
 ## Features
 
-- **`creadev.ai`**: Ask questions about the company, categories or products via AI Chatbot Assistant.
+- **`creadev.ai`**:
+  - **Project Request**: AI-powered parsing of freeform project requests and sending the structured summary via email.
+  - **General Assistant**: Ask questions about the company, categories or products via AI Chatbot Assistant.
 
 - **Role-Based Access Control**: Three distinct roles (ADMIN, EDITOR, Public) with different access levels.
 
@@ -37,7 +39,8 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 ## Tech Stack
 
 - **Java 21** / **Gradle (Groovy DSL)**
-- **Spring Boot 3.x / Spring Security / Spring Data JPA** 
+- **Spring Boot 3.x / Spring Security / Spring Data JPA**
+- **Spring Boot Starter Mail** (SMTP email dispatch)
 - **Flyway** (DB migrations)
 - **Cloudinary** (File storage)
 - **OpenAI** (Trained chatbot)
@@ -51,15 +54,16 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 
 ## Project Structure
 
-```
+```plaintext
 src/main/java/com/creadev/
 ├── config/                 # Application configuration
-│   ├── admin/              # Admin properties & data seeding
-│   ├── cloudinary/         # Cloudinary config
 │   ├── jwt/                # JWT security setup
 │   ├── logging/            # AOP logging aspect
+│   ├── cloudinary/         # Cloudinary config
+│   ├── admin/              # Admin properties & data seeding
 │   ├── openai/             # OpenAI config
 │   ├── phone/              # Phone properties
+│   ├── jackson/            # Jackson config to allow complex JSON
 │   └── swagger/            # Swagger/OpenAPI config
 ├── controller/             # REST API controllers
 ├── domain/                 # JPA entity classes
