@@ -1,4 +1,4 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.question;
 
 public interface QuestionService {
     /**

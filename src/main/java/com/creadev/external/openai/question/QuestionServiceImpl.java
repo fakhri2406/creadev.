@@ -1,22 +1,25 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.question;
 
-import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
+import com.creadev.external.openai.chat.ChatClient;
+import com.creadev.external.openai.chat.ChatMessage;
 import com.creadev.service.CategoryService;
 import com.creadev.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.RequiredArgsConstructor;
-import static com.creadev.util.ErrorMessages.*;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import static com.creadev.util.ErrorMessages.FAILED_TO_PREPARE_AI_REQUEST;
 
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
     private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.' ('creadev.ai'), a company specializing in custom software development. Use the provided categories and products to answer user questions about the company. The user may ask a question in any language (most used one is Azerbaijani). You need to provide clear, concise, and helpful responses in the language of user's prompt.";
+    private static final String ROLE_SYSTEM = "system";
+    private static final String ROLE_USER = "user";
 
     private final ChatClient chatClient;
     private final CategoryService categoryService;
@@ -27,17 +30,17 @@ public class QuestionServiceImpl implements QuestionService {
     public String getAnswer(String question) {
         try {
             String categoriesJson = objectMapper.writeValueAsString(
-            categoryService.getAllCategories(Pageable.unpaged()).getContent()
-        );
+                categoryService.getAllCategories(Pageable.unpaged()).getContent()
+            );
             String productsJson = objectMapper.writeValueAsString(
                 productService.getAllProducts(Pageable.unpaged()).getContent()
             );
 
             List<ChatMessage> messages = List.of(
-                new ChatMessage("system", SYSTEM_PROMPT),
-                new ChatMessage("system", "Categories: " + categoriesJson),
-                new ChatMessage("system", "Products: " + productsJson),
-                new ChatMessage("user", question)
+                new ChatMessage(ROLE_SYSTEM, SYSTEM_PROMPT),
+                new ChatMessage(ROLE_SYSTEM, "Categories: " + categoriesJson),
+                new ChatMessage(ROLE_SYSTEM, "Products: " + productsJson),
+                new ChatMessage(ROLE_USER, question)
             );
 
             return chatClient.chat(messages);

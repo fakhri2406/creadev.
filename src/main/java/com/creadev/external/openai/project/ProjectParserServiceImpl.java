@@ -1,10 +1,11 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.project;
 
-import java.util.List;
-
+import com.creadev.external.openai.chat.ChatClient;
+import com.creadev.external.openai.chat.ChatMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor

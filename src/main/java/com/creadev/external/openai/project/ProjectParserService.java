@@ -1,4 +1,4 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.project;
 
 public interface ProjectParserService {
     /**

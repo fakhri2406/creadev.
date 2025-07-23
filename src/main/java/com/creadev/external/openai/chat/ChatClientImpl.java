@@ -1,21 +1,20 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.chat;
 
-import java.io.IOException;
-import java.util.List;
-
+import com.creadev.config.openai.OpenAiProperties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.creadev.config.openai.OpenAiProperties;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.io.IOException;
+import java.util.List;
 
-import lombok.RequiredArgsConstructor;
-import static com.creadev.util.ErrorMessages.*;
+import static com.creadev.util.ErrorMessages.FAILED_TO_SEND_CHAT_REQUEST;
 
 @Service
 @RequiredArgsConstructor

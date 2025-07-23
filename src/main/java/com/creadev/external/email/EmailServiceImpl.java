@@ -1,13 +1,13 @@
 package com.creadev.external.email;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import lombok.RequiredArgsConstructor;
-import static com.creadev.util.ErrorMessages.*;
+import static com.creadev.util.ErrorMessages.FAILED_TO_SEND_EMAIL;
 
 @Service
 @RequiredArgsConstructor

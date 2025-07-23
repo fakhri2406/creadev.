@@ -1,4 +1,4 @@
-package com.creadev.external.openai;
+package com.creadev.external.openai.chat;
 
 public record ChatMessage(
     String role,

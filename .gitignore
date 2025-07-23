@@ -175,3 +175,4 @@ coverage/
 test-results/
 reports/
 *.test
+endpoints.md
