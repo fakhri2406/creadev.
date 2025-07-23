@@ -42,6 +42,7 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 - **Spring Boot 3.x / Spring Security / Spring Data JPA**
 - **Spring Boot Starter Mail** (SMTP email dispatch)
 - **Flyway** (DB migrations)
+- **Microsoft Azure** (SQL Database & Web App)
 - **Cloudinary** (File storage)
 - **OpenAI** (Trained chatbot)
 - **MapStruct** (DTO ↔ Entity mapping)
