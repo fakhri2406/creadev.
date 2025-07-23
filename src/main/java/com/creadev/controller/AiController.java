@@ -1,21 +1,19 @@
 package com.creadev.controller;
 
+import com.creadev.dto.request.ai.AiRequest;
+import com.creadev.dto.response.ai.AiResponse;
+import com.creadev.external.openai.project.ProjectRequestService;
+import com.creadev.external.openai.question.QuestionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.creadev.dto.request.ai.AiRequest;
-import com.creadev.dto.response.ai.AiResponse;
-import com.creadev.external.openai.question.QuestionService;
-import com.creadev.external.openai.project.ProjectRequestService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @Tag(name = "AI", description = "Endpoints for AI assistant")
@@ -32,8 +30,8 @@ public class AiController {
     )
     @PostMapping("/ask")
     public ResponseEntity<AiResponse> ask(@RequestBody @Valid AiRequest request) {
-        String answer = questionService.getAnswer(request.question());
-        return ResponseEntity.ok(new AiResponse(answer));
+        AiResponse response = questionService.getAnswer(request);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(
@@ -42,7 +40,7 @@ public class AiController {
     )
     @PostMapping("/project-request")
     public ResponseEntity<AiResponse> projectRequest(@RequestBody @Valid AiRequest request) {
-        AiResponse response = projectRequestService.handle(request.question());
+        AiResponse response = projectRequestService.handle(request);
         return ResponseEntity.ok(response);
     }
 } 

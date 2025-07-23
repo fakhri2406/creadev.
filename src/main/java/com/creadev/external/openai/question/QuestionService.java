@@ -1,11 +1,14 @@
 package com.creadev.external.openai.question;
 
+import com.creadev.dto.request.ai.AiRequest;
+import com.creadev.dto.response.ai.AiResponse;
+
 public interface QuestionService {
     /**
-     * Send a user question to the OpenAI API and retrieve an answer.
+     * Process a user question request and return the AI response.
      *
-     * @param question the user's question
-     * @return the AI-generated answer
+     * @param request the AiRequest containing the question
+     * @return AiResponse with the AI's answer
      */
-    String getAnswer(String question);
+    AiResponse getAnswer(AiRequest request);
 } 

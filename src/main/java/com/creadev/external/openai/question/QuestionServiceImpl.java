@@ -1,5 +1,7 @@
 package com.creadev.external.openai.question;
 
+import com.creadev.dto.request.ai.AiRequest;
+import com.creadev.dto.response.ai.AiResponse;
 import com.creadev.external.openai.chat.ChatClient;
 import com.creadev.external.openai.chat.ChatMessage;
 import com.creadev.service.CategoryService;
@@ -27,7 +29,8 @@ public class QuestionServiceImpl implements QuestionService {
     private final ObjectMapper objectMapper;
 
     @Override
-    public String getAnswer(String question) {
+    public AiResponse getAnswer(AiRequest request) {
+        String question = request.question();
         try {
             String categoriesJson = objectMapper.writeValueAsString(
                 categoryService.getAllCategories(Pageable.unpaged()).getContent()
@@ -43,7 +46,8 @@ public class QuestionServiceImpl implements QuestionService {
                 new ChatMessage(ROLE_USER, question)
             );
 
-            return chatClient.chat(messages);
+            String answer = chatClient.chat(messages);
+            return new AiResponse(answer);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(FAILED_TO_PREPARE_AI_REQUEST, e);
         }

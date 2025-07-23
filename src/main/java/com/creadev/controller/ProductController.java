@@ -41,11 +41,11 @@ public class ProductController {
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ProductResponse> result = productService.getAllProducts(pageable);
+        Page<ProductResponse> responses = productService.getAllProducts(pageable);
 
-        return result.isEmpty()
+        return responses.isEmpty()
             ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok(result);
+            : ResponseEntity.ok(responses);
     }
 
     @Operation(

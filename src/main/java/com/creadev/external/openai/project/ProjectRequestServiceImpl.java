@@ -1,13 +1,12 @@
 package com.creadev.external.openai.project;
 
-import com.creadev.external.openai.chat.ChatClient;
-import com.creadev.external.openai.chat.ChatMessage;
-import org.springframework.stereotype.Service;
-
+import com.creadev.dto.request.ai.AiRequest;
 import com.creadev.dto.response.ai.AiResponse;
 import com.creadev.external.email.EmailService;
-
+import com.creadev.external.openai.chat.ChatClient;
+import com.creadev.external.openai.chat.ChatMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -29,9 +28,9 @@ public class ProjectRequestServiceImpl implements ProjectRequestService {
     private final EmailService emailService;
 
     @Override
-    public AiResponse handle(String request) {
-        String parsed = parse(request);
-
+    public AiResponse handle(AiRequest request) {
+        String userInput = request.question();
+        String parsed = parse(userInput);
         boolean isStructured = parsed.contains("1)") && parsed.contains("2)");
         if (isStructured) {
             emailService.sendEmail(

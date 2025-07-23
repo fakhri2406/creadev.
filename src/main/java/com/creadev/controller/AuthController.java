@@ -40,9 +40,9 @@ public class AuthController {
         }
 
         String token = header.substring(header.indexOf(' ') + 1);
-        UserInfoResponse info = authService.getUserInfo(token);
+        UserInfoResponse response = authService.getUserInfo(token);
 
-        return ResponseEntity.ok(info);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(

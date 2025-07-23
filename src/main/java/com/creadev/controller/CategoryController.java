@@ -38,11 +38,11 @@ public class CategoryController {
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<CategoryResponse> result = categoryService.getAllCategories(pageable);
+        Page<CategoryResponse> responses = categoryService.getAllCategories(pageable);
 
-        return result.isEmpty()
+        return responses.isEmpty()
             ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok(result);
+            : ResponseEntity.ok(responses);
     }
 
     @Operation(
