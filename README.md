@@ -3,16 +3,17 @@
 A comprehensive Spring Boot backend service for **creadev.** specializing in custom software development (functional platforms, corporate websites, mobile apps, etc.). This backend provides:
 
 - A categories & products catalog
-- An AI chatbot assistant for general info and project requests
+- An AI assistant chatbot
 - Full admin/editor authentication, authorization & admin endpoints
 
 ---
 
 ## Features
 
-- **`creadev.ai`**:
-  - **Project Request**: AI-powered parsing of freeform project requests and sending the structured summary via email.
-  - **General Assistant**: Ask questions about the company, categories or products.
+- **`creadev.ai`**: Unified AI assistant
+  - Automatically classifies input as either a general company/product query or a project request.
+  - For general queries: returns direct, concise answers.
+  - For project requests: performs follow-up prompts as needed; once complete, emails a structured summary and returns a confirmation message.
 
 - **Role-Based Access Control**: Three distinct roles (ADMIN, EDITOR, Public) with different access levels.
 
