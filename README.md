@@ -39,8 +39,8 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 
 ## Tech Stack
 
-- **Java 21** / **Gradle (Groovy DSL)**
-- **Spring Boot 3.x / Spring Security / Spring Data JPA**
+- **Java 21** / **Gradle (Kotlin DSL)**
+- **Spring Boot 3.5.3 / Spring Security / Spring Data JPA**
 - **Spring Boot Starter Mail** (SMTP email dispatch)
 - **Flyway** (DB migrations)
 - **Microsoft Azure** (SQL Database & Web App)
