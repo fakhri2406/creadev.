@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.5.3"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.graalvm.buildtools.native") version "0.10.1"
 }
 
 group = "com.creadev"
@@ -33,7 +34,6 @@ dependencies {
     implementation("com.cloudinary:cloudinary-http44:1.34.0")
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
@@ -54,4 +54,17 @@ tasks.test {
 
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     archiveFileName.set("app.jar")
+}
+
+graalvmNative {
+    toolchainDetection.set(true)
+    binaries {
+        named("main") {
+            imageName.set("app")
+            buildArgs.add("--no-fallback")
+            buildArgs.add("--install-exit-handlers")
+            buildArgs.add("-H:+ReportExceptionStackTraces")
+            buildArgs.add("--initialize-at-build-time=org.apache.commons.logging.LogFactoryService,org.apache.commons.logging.LogFactory")
+        }
+    }
 }
