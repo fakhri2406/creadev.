@@ -42,6 +42,7 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 - **Java 21** / **Gradle (Kotlin DSL)**
 - **Spring Boot 3.5.3 / Spring Security / Spring Data JPA**
 - **Spring Boot Starter Mail** (SMTP email dispatch)
+- **GraalVM Native Image** (For lower memory footprint)
 - **Flyway** (DB migrations)
 - **Microsoft Azure** (SQL Database & Web App)
 - **Cloudinary** (File storage)
@@ -58,15 +59,8 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 
 ```plaintext
 src/main/java/com/creadev/
-├── config/                 # Application configuration
-│   ├── jwt/                # JWT security setup
-│   ├── logging/            # AOP logging aspect
-│   ├── cloudinary/         # Cloudinary config
-│   ├── admin/              # Admin properties & data seeding
-│   ├── openai/             # OpenAI config
-│   ├── phone/              # Phone properties
-│   ├── jackson/            # Jackson config to allow complex JSON
-│   └── swagger/            # Swagger/OpenAPI config
+├── .github/                # CI Workflow
+├── config/                 # Configuration classes
 ├── controller/             # REST API controllers
 ├── domain/                 # JPA entity classes
 ├── dto/                    # Data Transfer Objects
@@ -76,7 +70,7 @@ src/main/java/com/creadev/
 ├── repository/             # Spring Data repositories
 ├── service/                # Business logic
 │   └── impl/               # Service implementations
-└── util/                   # Utilities
+└── util/                   # Utility classes
 ```
 
 ---  
