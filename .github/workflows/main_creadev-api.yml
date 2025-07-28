@@ -20,9 +20,6 @@ jobs:
           distribution: 'graalvm'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install native-image component
-        run: gu install native-image
-
       - name: Build native image
         run: ./gradlew nativeCompile -x test
 
