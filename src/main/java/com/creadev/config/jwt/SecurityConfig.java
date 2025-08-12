@@ -56,7 +56,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, PRODUCTS_URL).hasRole(ROLE_ADMIN)
                 .requestMatchers(
                     "/",
-                    "/ping",
+                    "/actuator/health",
+                    "/actuator/health/**",
                     "/api/v1/auth/login",
                     "/api/v1/auth/refresh",
                     "/api/v1/ai/ask",
