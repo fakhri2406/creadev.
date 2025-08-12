@@ -19,6 +19,8 @@ public final class ErrorMessages {
     public static final String REFRESH_TOKEN_EXPIRED = "Refresh token expired";
     public static final String REFRESH_TOKEN_MISMATCH = "Refresh token does not belong to current user";
     public static final String USER_NOT_FOUND = "User not found";
+    public static final String CANNOT_DELETE_MASTER_ADMIN = "Cannot delete the master admin user";
+
 
     /**
      * Category error messages

@@ -51,9 +51,9 @@ public interface AutoMapper {
     @Mapping(target = "updatedAt", expression = "java(java.time.LocalDateTime.now())")
     void toProductFromUpdate(UpdateProductRequest dto, @MappingTarget Product product);
 
-    @Mapping(target = "createdAt", expression = "java(mapToInstant(documentation.getCreatedAt()))")
-    @Mapping(target = "updatedAt", expression = "java(mapToInstant(documentation.getUpdatedAt()))")
-    ProductResponse toProductResponse(Product documentation);
+    @Mapping(target = "createdAt", expression = "java(mapToInstant(product.getCreatedAt()))")
+    @Mapping(target = "updatedAt", expression = "java(mapToInstant(product.getUpdatedAt()))")
+    ProductResponse toProductResponse(Product product);
 
     /**
      * User mapping

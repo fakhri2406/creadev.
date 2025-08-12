@@ -1,5 +1,6 @@
 package com.creadev.service.impl;
 
+import com.creadev.config.admin.AdminProperties;
 import com.creadev.config.phone.PhoneProperties;
 import com.creadev.domain.Role;
 import com.creadev.domain.User;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final Hasher hasher;
     private final PhoneProperties phoneProperties;
+    private final AdminProperties adminProperties;
 
     /**
      * Create
@@ -135,8 +137,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(Integer userId) {
-        if (!userRepository.existsById(userId)) {
-            throw new NoSuchElementException(USER_NOT_FOUND);
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new NoSuchElementException(USER_NOT_FOUND));
+
+        if (user.getUsername() != null && user.getUsername().equalsIgnoreCase(adminProperties.getUsername())) {
+            throw new IllegalArgumentException(CANNOT_DELETE_MASTER_ADMIN);
+        }
+        if (user.getEmail() != null && user.getEmail().equalsIgnoreCase(adminProperties.getEmail())) {
+            throw new IllegalArgumentException(CANNOT_DELETE_MASTER_ADMIN);
         }
 
         userRepository.deleteById(userId);
