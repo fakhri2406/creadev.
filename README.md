@@ -44,7 +44,6 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 - **Spring Boot Starter Mail** (SMTP email dispatch)
 - **GraalVM Native Image** (For lower memory footprint)
 - **Flyway** (DB migrations)
-- **Microsoft Azure** (SQL Database & Web App)
 - **Cloudinary** (File storage)
 - **OpenAI** (Trained chatbot)
 - **MapStruct** (DTO ↔ Entity mapping)
@@ -59,7 +58,6 @@ A comprehensive Spring Boot backend service for **creadev.** specializing in cus
 
 ```plaintext
 src/main/java/com/creadev/
-├── .github/                # CI Workflow
 ├── config/                 # Configuration classes
 ├── controller/             # REST API controllers
 ├── domain/                 # JPA entity classes
