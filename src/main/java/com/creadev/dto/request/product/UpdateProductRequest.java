@@ -20,7 +20,6 @@ public record UpdateProductRequest(
     @NotBlank(message = "Link is required")
     String link,
 
-    @NotNull(message = "Image is required")
     MultipartFile image
 ) {
 }

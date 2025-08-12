@@ -51,7 +51,8 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         String contentType = file.getContentType();
         if (contentType == null ||
             !(contentType.equalsIgnoreCase("image/jpeg") ||
-                contentType.equalsIgnoreCase("image/png"))) {
+                contentType.equalsIgnoreCase("image/png") ||
+                contentType.equalsIgnoreCase("image/webp"))) {
             throw new IllegalArgumentException(FILE_UNSUPPORTED_TYPE);
         }
     }
