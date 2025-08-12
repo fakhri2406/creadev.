@@ -44,6 +44,12 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     @Transactional(readOnly = true)
+    public Long getCategoryCount() {
+        return categoryRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Page<CategoryResponse> getAllCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable)
             .map(mapper::toCategoryResponse);

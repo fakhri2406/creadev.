@@ -16,6 +16,13 @@ public interface UserService {
     UserResponse createUser(CreateUserRequest request);
 
     /**
+     * Get the total count of users in the system.
+     *
+     * @return the total number of users
+     */
+    Long getUserCount();
+
+    /**
      * Fetch all User entities and map to UserResponse DTOs with pagination.
      *
      * @param pageable the pagination information

@@ -18,6 +18,13 @@ public interface ProductService {
     ProductResponse createProduct(CreateProductRequest request);
 
     /**
+     * Get the total count of products in the system.
+     *
+     * @return the total number of products
+     */
+    Long getProductCount();
+
+    /**
      * Fetch all Product entities and map them to responses with pagination.
      *
      * @param pageable the pagination information

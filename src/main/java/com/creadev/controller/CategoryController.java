@@ -30,6 +30,15 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @Operation(
+        summary = "Get total category count",
+        description = "Retrieve the total number of categories in the system"
+    )
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCategoryCount() {
+        return ResponseEntity.ok(categoryService.getCategoryCount());
+    }
+
+    @Operation(
         summary = "Get all categories (paginated)",
         description = "Retrieve a paginated list of all product categories"
     )

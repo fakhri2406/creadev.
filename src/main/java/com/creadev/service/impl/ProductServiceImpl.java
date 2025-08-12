@@ -52,6 +52,12 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     @Transactional(readOnly = true)
+    public Long getProductCount() {
+        return productRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Page<ProductResponse> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable)
             .map(mapper::toProductResponse);

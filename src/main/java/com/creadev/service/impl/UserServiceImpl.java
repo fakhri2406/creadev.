@@ -78,6 +78,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     @Transactional(readOnly = true)
+    public Long getUserCount() {
+        return userRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Page<UserResponse> getAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable)
             .map(mapper::toUserResponse);

@@ -30,6 +30,17 @@ public class UserController {
     private final UserService userService;
 
     @Operation(
+        summary = "Get total user count",
+        description = "Retrieve the total number of users in the system",
+        security = @SecurityRequirement(name = "bearerAuth")
+    )
+    @GetMapping("/count")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Long> getUserCount() {
+        return ResponseEntity.ok(userService.getUserCount());
+    }
+
+    @Operation(
         summary = "Get all users (paginated)",
         description = "Retrieve a paginated list of all users",
         security = @SecurityRequirement(name = "bearerAuth")

@@ -16,6 +16,13 @@ public interface CategoryService {
     CategoryResponse createCategory(CreateCategoryRequest request);
 
     /**
+     * Get the total count of categories in the system.
+     *
+     * @return the total number of categories
+     */
+    Long getCategoryCount();
+
+    /**
      * Fetch all Category entities and map them to responses with pagination.
      *
      * @param pageable the pagination information

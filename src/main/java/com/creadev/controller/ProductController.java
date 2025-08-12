@@ -33,6 +33,15 @@ public class ProductController {
     private final ProductService productService;
 
     @Operation(
+        summary = "Get total product count",
+        description = "Retrieve the total number of products in the system"
+    )
+    @GetMapping("/count")
+    public ResponseEntity<Long> getProductCount() {
+        return ResponseEntity.ok(productService.getProductCount());
+    }
+
+    @Operation(
         summary = "Get all products",
         description = "Retrieve a paginated list of all products"
     )
