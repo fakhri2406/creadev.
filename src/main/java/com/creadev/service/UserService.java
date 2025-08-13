@@ -3,6 +3,7 @@ package com.creadev.service;
 import com.creadev.dto.request.user.CreateUserRequest;
 import com.creadev.dto.request.user.UpdateUserRequest;
 import com.creadev.dto.response.user.UserResponse;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +14,7 @@ public interface UserService {
      * @param request the CreateUserRequest containing user details
      * @return a UserResponse representing the created user
      */
-    UserResponse createUser(CreateUserRequest request);
+    UserResponse createUser(@Valid CreateUserRequest request);
 
     /**
      * Get the total count of users in the system.
@@ -45,7 +46,7 @@ public interface UserService {
      * @param request the UpdateUserRequest containing updated user information
      * @return a UserResponse representing the updated user
      */
-    UserResponse updateUser(Integer userId, UpdateUserRequest request);
+    UserResponse updateUser(Integer userId, @Valid UpdateUserRequest request);
 
     /**
      * Verify the user exists and delete it from the repository.

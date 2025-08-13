@@ -3,6 +3,7 @@ package com.creadev.service;
 import com.creadev.dto.request.product.CreateProductRequest;
 import com.creadev.dto.request.product.UpdateProductRequest;
 import com.creadev.dto.response.product.ProductResponse;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,7 +16,7 @@ public interface ProductService {
      * @param request the request containing product details
      * @return the created ProductResponse
      */
-    ProductResponse createProduct(CreateProductRequest request);
+    ProductResponse createProduct(@Valid CreateProductRequest request);
 
     /**
      * Get the total count of products in the system.
@@ -65,7 +66,7 @@ public interface ProductService {
      * @param request   the request containing updated product details
      * @return the updated ProductResponse
      */
-    ProductResponse updateProduct(Integer productId, UpdateProductRequest request);
+    ProductResponse updateProduct(Integer productId, @Valid UpdateProductRequest request);
 
     /**
      * Remove the Product entity and delete associated files from Cloudinary.

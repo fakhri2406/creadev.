@@ -3,6 +3,7 @@ package com.creadev.service;
 import com.creadev.dto.request.category.CreateCategoryRequest;
 import com.creadev.dto.request.category.UpdateCategoryRequest;
 import com.creadev.dto.response.category.CategoryResponse;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,7 +14,7 @@ public interface CategoryService {
      * @param request the request containing category details
      * @return the created CategoryResponse
      */
-    CategoryResponse createCategory(CreateCategoryRequest request);
+    CategoryResponse createCategory(@Valid CreateCategoryRequest request);
 
     /**
      * Get the total count of categories in the system.
@@ -45,7 +46,7 @@ public interface CategoryService {
      * @param request    the request containing updated category details
      * @return the updated CategoryResponse
      */
-    CategoryResponse updateCategory(Integer categoryId, UpdateCategoryRequest request);
+    CategoryResponse updateCategory(Integer categoryId, @Valid UpdateCategoryRequest request);
 
     /**
      * Verify the category exists and has no associated documentations before deleting it.

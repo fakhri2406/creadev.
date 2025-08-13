@@ -4,6 +4,7 @@ import com.creadev.dto.request.auth.LoginRequest;
 import com.creadev.dto.request.auth.RefreshTokenRequest;
 import com.creadev.dto.response.auth.AuthResponse;
 import com.creadev.dto.response.auth.UserInfoResponse;
+import jakarta.validation.Valid;
 
 public interface AuthService {
     /**
@@ -12,7 +13,7 @@ public interface AuthService {
      * @param loginRequest the login request containing username and password
      * @return an AuthResponse containing access and refresh tokens
      */
-    AuthResponse login(LoginRequest loginRequest);
+    AuthResponse login(@Valid LoginRequest loginRequest);
 
     /**
      * Parse the provided JWT access token to extract and return user information from its claims.
@@ -28,7 +29,7 @@ public interface AuthService {
      * @param refreshTokenRequest the request containing the refresh token
      * @return an AuthResponse containing new access and refresh tokens
      */
-    AuthResponse refreshToken(RefreshTokenRequest refreshTokenRequest);
+    AuthResponse refreshToken(@Valid RefreshTokenRequest refreshTokenRequest);
 
     /**
      * Log out the user by deleting stored refresh tokens and revoking the provided access token.
