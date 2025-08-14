@@ -17,12 +17,16 @@ public class ProjectRequestServiceImpl implements ProjectRequestService {
         "1) Project Category (choose one of: Corporate website, Functional platform, Mobile application, Other), " +
         "2) Project Overview (clear and concise description), " +
         "3) Project Features (bulleted list of features), " +
-        "4) Project Flows (detailed user and admin flows), " +
+        "4) Project Flows (detailed user and/or admin flows), " +
         "5) Budget (optional, only if the user provided a budget), " +
         "6) Contact Information (phone number, Instagram, or other contact info). " +
-        "If any required information (except budget) is missing from the user's prompt (e.g. contact info) or is not enough to build a section (e.g. user/admin flows), ask follow-up questions to obtain it. " +
+        "If any required information (except budget) is missing from the user's prompt (e.g. contact info) or is not enough to build a section (e.g. user/admin flows), ask follow-up questions in the language of user's prompt to obtain it. " +
         "Output only the structured sections with their headings numbered exactly as above.";
-    private static final String CONFIRMATION_MESSAGE = "Thank you! Your request has been sent to our email, you will be contacted very shortly";
+    private static final String CONFIRMATION_MESSAGE = "Təşəkkür edirik! Sorğunuz e-mailimizə göndərildi, sizinlə tezliklə əlaqə saxlanılacaq." +
+        "\n\n---\n\n" +
+        "Thank you! Your request has been sent to our email, you will be contacted very shortly";
+    private static final String ROLE_SYSTEM = "system";
+    private static final String ROLE_USER = "user";
 
     private final ChatClient chatClient;
     private final EmailService emailService;
@@ -48,8 +52,8 @@ public class ProjectRequestServiceImpl implements ProjectRequestService {
 
     private String parse(String request) {
         List<ChatMessage> messages = List.of(
-            new ChatMessage("system", PARSING_SYSTEM_PROMPT),
-            new ChatMessage("user", request)
+            new ChatMessage(ROLE_SYSTEM, PARSING_SYSTEM_PROMPT),
+            new ChatMessage(ROLE_USER, request)
         );
         return chatClient.chat(messages);
     }

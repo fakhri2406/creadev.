@@ -19,7 +19,10 @@ import static com.creadev.util.ErrorMessages.FAILED_TO_PREPARE_AI_REQUEST;
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
-    private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.' ('creadev.ai'), a company specializing in custom software development. Use the provided categories and products to answer user questions about the company. The user may ask a question in any language (most used one is Azerbaijani). You need to provide clear, concise, and helpful responses in the language of user's prompt.";
+    private static final String SYSTEM_PROMPT = "You are an AI assistant for 'creadev.' ('creadev.ai'), a company specializing in custom software development. " +
+        "Use the provided categories and products to answer user questions about the company. " +
+        "The user may ask a question in any language (most common one is Azerbaijani). " +
+        "You need to provide clear, concise, and helpful responses in the language of user's prompt.";
     private static final String ROLE_SYSTEM = "system";
     private static final String ROLE_USER = "user";
 

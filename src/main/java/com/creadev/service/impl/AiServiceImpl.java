@@ -19,6 +19,8 @@ public class AiServiceImpl implements AiService {
         "You are an AI classifier for 'creadev.ai'. Given the user's input, respond with exactly '1' if it's a general question about the company overview, categories, or products; " +
             "respond with exactly '2' if it's a project request describing requirements, budget, contact info, etc. " +
             "Output only '1' or '2' without extra text.";
+    private static final String ROLE_SYSTEM = "system";
+    private static final String ROLE_USER = "user";
 
     private final ChatClient chatClient;
     private final QuestionService questionService;
@@ -28,8 +30,8 @@ public class AiServiceImpl implements AiService {
     public AiResponse handle(AiRequest request) {
         String content = request.question();
         List<ChatMessage> classifyMessages = List.of(
-            new ChatMessage("system", CLASSIFIER_PROMPT),
-            new ChatMessage("user", content)
+            new ChatMessage(ROLE_SYSTEM, CLASSIFIER_PROMPT),
+            new ChatMessage(ROLE_USER, content)
         );
 
         String classification;
