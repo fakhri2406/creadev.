@@ -1,15 +1,14 @@
 package com.creadev.controller;
 
-import java.util.Date;
-
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import com.creadev.dto.request.auth.LoginRequest;
+import com.creadev.dto.request.auth.RefreshTokenRequest;
+import com.creadev.dto.response.auth.AuthResponse;
+import com.creadev.dto.response.auth.UserInfoResponse;
+import com.creadev.service.AuthService;
+import com.creadev.util.GlobalExceptionHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,18 +21,19 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Date;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import com.creadev.dto.request.auth.LoginRequest;
-import com.creadev.dto.request.auth.RefreshTokenRequest;
-import com.creadev.dto.response.auth.AuthResponse;
-import com.creadev.dto.response.auth.UserInfoResponse;
-import com.creadev.service.AuthService;
-import com.creadev.util.GlobalExceptionHandler;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(controllers = AuthController.class, excludeFilters = {
     @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
@@ -166,8 +166,8 @@ class AuthControllerTest {
     void me_validHeader_returnsOk() throws Exception {
         // Arrange
         UserInfoResponse info = new UserInfoResponse(
-            "issuer","aud","sub", new Date(1000), new Date(2000),
-            "john","John","Doe","john@example.com","501234567","ADMIN"
+            "issuer", "aud", "sub", new Date(1000), new Date(2000),
+            "john", "John", "Doe", "john@example.com", "501234567", "ADMIN"
         );
         when(authService.getUserInfo(eq("token123"))).thenReturn(info);
 

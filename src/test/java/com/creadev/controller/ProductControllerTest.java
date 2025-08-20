@@ -1,20 +1,13 @@
 package com.creadev.controller;
 
-import java.nio.charset.StandardCharsets;
-import java.time.Instant;
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import com.creadev.dto.request.product.CreateProductRequest;
+import com.creadev.dto.request.product.UpdateProductRequest;
+import com.creadev.dto.response.product.ProductResponse;
+import com.creadev.service.ProductService;
+import com.creadev.util.GlobalExceptionHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -30,17 +23,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import com.creadev.dto.request.product.CreateProductRequest;
-import com.creadev.dto.request.product.UpdateProductRequest;
-import com.creadev.dto.response.product.ProductResponse;
-import com.creadev.service.ProductService;
-import com.creadev.util.GlobalExceptionHandler;
 
 @WebMvcTest(controllers = ProductController.class, excludeFilters = {
     @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
@@ -255,7 +251,10 @@ class ProductControllerTest {
                     .param("title", "Sample Title")
                     .param("description", "Sample Description")
                     .param("link", "https://example.com")
-                    .with(request -> { request.setMethod("PUT"); return request; })
+                    .with(request -> {
+                        request.setMethod("PUT");
+                        return request;
+                    })
             )
             // Assert
             .andExpect(status().isOk())

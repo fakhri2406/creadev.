@@ -1,19 +1,14 @@
 package com.creadev.controller;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.NoSuchElementException;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import com.creadev.dto.request.category.CreateCategoryRequest;
+import com.creadev.dto.request.category.UpdateCategoryRequest;
+import com.creadev.dto.response.category.CategoryResponse;
+import com.creadev.service.CategoryService;
+import com.creadev.util.GlobalExceptionHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,19 +23,19 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
+import java.time.Instant;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import com.creadev.dto.request.category.CreateCategoryRequest;
-import com.creadev.dto.request.category.UpdateCategoryRequest;
-import com.creadev.dto.response.category.CategoryResponse;
-import com.creadev.service.CategoryService;
-import com.creadev.util.GlobalExceptionHandler;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(controllers = CategoryController.class, excludeFilters = {
     @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
