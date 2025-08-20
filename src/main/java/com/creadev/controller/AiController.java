@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "AI", description = "Endpoints for AI assistant")
+@Tag(
+    name = "AI",
+    description = "Endpoints for AI assistant"
+)
 @RequestMapping("/api/v1/ai")
 @Validated
 @RequiredArgsConstructor
